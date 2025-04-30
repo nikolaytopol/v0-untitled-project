@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+    line-height: 1.2;
+  }
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-light tracking-wide;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl font-light tracking-wide;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-light tracking-wide;
+  }
+  h4 {
+    @apply text-lg md:text-xl font-light tracking-wide;
+  }
+  p {
+    @apply mb-4;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  /* Icon animations */
+  .icon-hover {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+
+  .icon-hover:hover {
+    @apply transform scale-110;
+  }
+
+  /* Button animations */
+  .btn-hover-effect {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-hover-effect::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: height 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn-hover-effect:hover::after {
+    height: 100%;
+  }
+
+  /* Product card hover effects */
+  .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Image gallery */
+  .image-gallery {
+    @apply grid gap-2;
+  }
+
+  .image-gallery-main {
+    @apply relative aspect-[3/4] overflow-hidden rounded-sm;
+  }
+
+  .image-gallery-thumbnails {
+    @apply flex gap-2 overflow-x-auto pb-2;
+  }
+
+  .image-gallery-thumbnail {
+    @apply relative w-20 h-24 flex-shrink-0 border-2 transition-all duration-300 cursor-pointer;
+  }
+
+  .image-gallery-thumbnail.active {
+    @apply border-black;
+  }
+
+  .image-gallery-thumbnail:not(.active) {
+    @apply border-transparent hover:border-neutral-300;
+  }
+
+  /* Shipping info section */
+  .shipping-info {
+    @apply bg-neutral-50 p-6 rounded-md my-6;
+  }
+
+  .shipping-info-item {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .shipping-info-icon {
+    @apply text-neutral-700 flex-shrink-0;
+  }
+
+  /* Promotion section */
+  .promotion-section {
+    @apply bg-blue-50 p-6 rounded-md my-6 text-center;
+  }
+
+  .promotion-code {
+    @apply font-bold text-lg;
+  }
+
+  /* Accordion styles */
+  .accordion-section {
+    @apply border-t border-neutral-200 py-4;
+  }
+
+  .accordion-header {
+    @apply flex justify-between items-center cursor-pointer;
+  }
+
+  .accordion-content {
+    @apply pt-4;
+  }
+
+  /* Rating stars */
+  .rating-stars {
+    @apply flex items-center;
+  }
+
+  .rating-star {
+    @apply text-yellow-400;
+  }
+
+  .rating-star.empty {
+    @apply text-neutral-300;
+  }
+
+  /* Address card */
+  .address-card {
+    @apply border rounded-md p-4 hover:border-black transition-colors;
+  }
+
+  .address-card.default {
+    @apply border-black bg-neutral-50;
+  }
+
+  .address-promotion {
+    @apply mt-2 text-sm text-green-600 font-medium;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease forwards;
+  }
+}
